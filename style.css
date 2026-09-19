@@ -176,10 +176,11 @@ html, body {
 .letter-groom,
 .letter-bride {
   font-family: var(--font-script);
-  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-size: clamp(1.35rem, 4.6vw, 1.95rem);
   font-weight: 400;
   color: var(--color-burgundy-deep);
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .letter-amp {
@@ -533,11 +534,12 @@ html, body {
 
 .couple-name {
   font-family: var(--font-script);
-  font-size:14cqw;
+  font-size: 10cqw;
   font-weight: 400;
   color: var(--color-burgundy-deep);
   line-height: 1.05;
-  letter-spacing:0.1cqw;
+  letter-spacing: 0.05cqw;
+  white-space: nowrap;
 }
 
 .parentage-detail {
@@ -738,6 +740,22 @@ html, body {
   color: #fff;
   border-color: var(--color-burgundy-deep);
   transform: rotate(90deg);
+}
+
+/* SAVE THE DATE (SVD) CALENDAR BLOCK */
+.svd-calendar-block {
+  width: 100%;
+  max-width: 76cqw;
+  margin: 1cqw auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svd-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* COUNTDOWN SECTION */

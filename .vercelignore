@@ -1,0 +1,13 @@
+.git
+.gitignore
+.vercel
+*.py
+clean_assets.py
+create_clean_arch.py
+__pycache__
+*.pyc
+.vscode
+.idea
+Thumbs.db
+.DS_Store
+README.md

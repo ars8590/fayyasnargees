@@ -5,11 +5,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- HERO & VIDEO EXPERIENCE ---
-  const heroSection = document.getElementById('heroSection');
-  const video = document.getElementById('curtainVideo');
-  const playOverlay = document.getElementById('playOverlay');
-  const openBtn = document.getElementById('openInvitationBtn');
+  // --- ENVELOPE OPENING ---
+  const envelopeScreen = document.getElementById('envelopeScreen');
+  const envelopeFlap = document.getElementById('envelopeFlap');
+  const waxSeal = document.getElementById('waxSeal');
+  const envelopeLetter = document.getElementById('envelopeLetter');
+  const envelopeTapHint = document.getElementById('envelopeTapHint');
 
   // --- MUSIC ---
   const music = document.getElementById('bgMusic');
@@ -18,8 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let isPlaying = false;
   let shouldResumeOnVisible = false;
-  let isExperienceStarted = false;
-  let isHeroFinished = false;
+  let isEnvelopeOpened = false;
 
   // Speaker icons SVG
   const iconSoundOn = `
@@ -66,59 +66,44 @@ document.addEventListener('DOMContentLoaded', () => {
   // Prevent background scroll before envelope is opened
   document.body.style.overflow = 'hidden';
 
-  function finishHeroExperience() {
-    if (isHeroFinished) return;
-    isHeroFinished = true;
-
-    if (heroSection) {
-      heroSection.classList.add('hide');
-      setTimeout(() => {
-        heroSection.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 600);
-    }
-  }
-
-  function startInvitationExperience(e) {
+  function openEnvelope(e) {
     if (e) {
       e.stopPropagation();
       if (e.type === 'touchend') e.preventDefault();
     }
+    if (isEnvelopeOpened) return;
+    isEnvelopeOpened = true;
 
-    if (isHeroFinished) return;
+    // Step 1: Break wax seal (instant)
+    if (waxSeal) waxSeal.classList.add('break');
 
-    // Second tap during video skips directly to invitation
-    if (isExperienceStarted) {
-      finishHeroExperience();
-      return;
+    // Step 2: Hide tap hint
+    if (envelopeTapHint) {
+      envelopeTapHint.style.opacity = '0';
+      envelopeTapHint.style.transition = 'opacity 0.3s ease';
     }
 
-    isExperienceStarted = true;
+    // Step 3: Open flap after seal breaks (300ms delay)
+    setTimeout(() => {
+      if (envelopeFlap) envelopeFlap.classList.add('opened');
+    }, 300);
 
-    // Hide cover overlay to reveal curtain video underneath
-    if (playOverlay) {
-      playOverlay.style.opacity = '0';
-      playOverlay.style.transition = 'opacity 0.4s ease';
-      setTimeout(() => {
-        playOverlay.style.display = 'none';
-      }, 400);
-    }
+    // Step 4: Letter slides up out of envelope (1100ms delay)
+    setTimeout(() => {
+      if (envelopeLetter) envelopeLetter.classList.add('slide-up');
+    }, 1100);
 
-    // Play curtain video
-    if (video) {
-      video.muted = true;
-      video.currentTime = 0;
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.log('Curtain video error, proceeding:', err);
-          finishHeroExperience();
-        });
+    // Step 5: Fade out envelope screen, reveal invitation (2000ms delay)
+    setTimeout(() => {
+      if (envelopeScreen) {
+        envelopeScreen.classList.add('hide');
+        setTimeout(() => {
+          envelopeScreen.style.display = 'none';
+          document.body.style.overflow = 'auto';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 800);
       }
-    } else {
-      finishHeroExperience();
-    }
+    }, 2000);
 
     // Start background music
     if (music) {
@@ -134,25 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Listeners for Opening CTA
-  if (openBtn) {
-    openBtn.addEventListener('click', startInvitationExperience);
-    openBtn.addEventListener('touchend', startInvitationExperience);
-  }
-
-  if (playOverlay) {
-    playOverlay.addEventListener('click', startInvitationExperience);
-  }
-
-  if (heroSection) {
-    heroSection.addEventListener('click', () => {
-      if (isExperienceStarted && !isHeroFinished) finishHeroExperience();
-    });
-  }
-
-  if (video) {
-    video.addEventListener('ended', finishHeroExperience);
-    video.addEventListener('error', finishHeroExperience);
+  // Tap anywhere on envelope to open
+  if (envelopeScreen) {
+    envelopeScreen.addEventListener('click', openEnvelope);
+    envelopeScreen.addEventListener('touchend', openEnvelope);
   }
 
   // Music toggle listener

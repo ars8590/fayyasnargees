@@ -4,9 +4,7 @@
   "private": true,
   "description": "Luxury Nikkah Invitation for Fayyas & Nargees",
   "scripts": {
-    "dev": "npx serve .",
-    "start": "npx serve .",
-    "build": "echo 'Static site ready for deployment'"
+    "dev": "npx serve ."
   },
   "keywords": [
     "nikkah",

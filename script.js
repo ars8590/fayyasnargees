@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- ENVELOPE OPENING ---
   const envelopeScreen = document.getElementById('envelopeScreen');
-  const envelopeFlap = document.getElementById('envelopeFlap');
-  const waxSeal = document.getElementById('waxSeal');
-  const envelopeLetter = document.getElementById('envelopeLetter');
   const envelopeTapHint = document.getElementById('envelopeTapHint');
 
   // --- MUSIC ---
@@ -74,26 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isEnvelopeOpened) return;
     isEnvelopeOpened = true;
 
-    // Step 1: Break wax seal (instant)
-    if (waxSeal) waxSeal.classList.add('break');
-
-    // Step 2: Hide tap hint
+    // Fade the prompt out on tap
     if (envelopeTapHint) {
       envelopeTapHint.style.opacity = '0';
       envelopeTapHint.style.transition = 'opacity 0.3s ease';
     }
 
-    // Step 3: Open flap after seal breaks (300ms delay)
-    setTimeout(() => {
-      if (envelopeFlap) envelopeFlap.classList.add('opened');
-    }, 300);
-
-    // Step 4: Letter slides up out of envelope (1100ms delay)
-    setTimeout(() => {
-      if (envelopeLetter) envelopeLetter.classList.add('slide-up');
-    }, 1100);
-
-    // Step 5: Fade out envelope screen, reveal invitation (2000ms delay)
+    // Fade the envelope away, reveal the invitation
     setTimeout(() => {
       if (envelopeScreen) {
         envelopeScreen.classList.add('hide');
@@ -103,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 800);
       }
-    }, 2000);
+    }, 350);
 
     // Start background music
     if (music) {

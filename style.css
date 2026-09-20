@@ -122,6 +122,7 @@ html, body {
   position: relative;
   display: inline-flex;
   line-height: 0;
+  perspective: 1500px;
 }
 
 .envelope-art {
@@ -130,13 +131,65 @@ html, body {
   height: auto;
   max-width: 92vw;
   max-height: 92dvh;
+}
+
+/* The fold runs from the top corners down to the wax seal, so the seal
+   splits as the flap lifts — the wax breaking open. */
+.envelope-art-body {
+  position: relative;
+  z-index: 1;
+  clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%);
+}
+
+.envelope-inside {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   border-radius: 4px;
+  background: linear-gradient(180deg, #2a0805 0%, #45150f 55%, #63251a 100%);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.45, 0.05, 0.25, 1);
+}
+
+.envelope-flap.opened {
+  transform: rotateX(-180deg);
+}
+
+.flap-face,
+.flap-underside {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flap-face {
+  max-width: none;
+  max-height: none;
+  clip-path: polygon(0 0, 100% 0, 50% 56%);
+}
+
+/* Back of the flap: same triangle mirrored, so it lands in place once flipped */
+.flap-underside {
+  clip-path: polygon(0 100%, 100% 100%, 50% 44%);
+  transform: rotateX(180deg);
+  background: linear-gradient(180deg, #efe3ce 0%, #e2d2b6 100%);
 }
 
 /* Sits just above the wax seal in the artwork */
 .envelope-open-label {
   position: absolute;
+  z-index: 3;
   top: 46%;
   left: 50%;
   font-family: var(--font-serif-display);

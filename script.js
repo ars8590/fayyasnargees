@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- ENVELOPE OPENING ---
   const envelopeScreen = document.getElementById('envelopeScreen');
   const envelopeTapHint = document.getElementById('envelopeTapHint');
+  const envelopeFlap = document.getElementById('envelopeFlap');
 
   // --- MUSIC ---
   const music = document.getElementById('bgMusic');
@@ -77,7 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
       envelopeTapHint.style.transition = 'opacity 0.3s ease';
     }
 
-    // Fade the envelope away, reveal the invitation
+    // Lift the flap
+    if (envelopeFlap) envelopeFlap.classList.add('opened');
+
+    // Fade the envelope away once it is open, reveal the invitation
     setTimeout(() => {
       if (envelopeScreen) {
         envelopeScreen.classList.add('hide');
@@ -87,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 800);
       }
-    }, 350);
+    }, 1150);
 
     // Start background music
     if (music) {

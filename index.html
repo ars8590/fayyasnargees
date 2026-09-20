@@ -69,7 +69,18 @@
   <!-- ========================================== -->
   <section class="envelope-screen" id="envelopeScreen">
     <div class="envelope-wrapper">
-      <img src="assets/images/cover.avif" alt="Sealed nikkah invitation envelope" class="envelope-art" fetchpriority="high">
+      <!-- Envelope interior, revealed as the flap lifts -->
+      <div class="envelope-inside"></div>
+
+      <!-- Lower envelope: the artwork minus the flap triangle -->
+      <img src="assets/images/cover.avif" alt="Sealed nikkah invitation envelope" class="envelope-art envelope-art-body" fetchpriority="high">
+
+      <!-- Flap: same artwork clipped to the triangle, hinged at the top edge -->
+      <div class="envelope-flap" id="envelopeFlap">
+        <img src="assets/images/cover.avif" alt="" class="envelope-art flap-face">
+        <div class="flap-underside"></div>
+      </div>
+
       <p class="envelope-open-label" id="envelopeTapHint">OPEN INVITATION</p>
     </div>
   </section>

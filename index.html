@@ -69,16 +69,26 @@
   <!-- ========================================== -->
   <section class="envelope-screen" id="envelopeScreen">
     <div class="envelope-wrapper">
-      <!-- Envelope interior, revealed as the flap lifts -->
+      <!-- Envelope interior, revealed as the flaps part -->
       <div class="envelope-inside"></div>
 
-      <!-- Lower envelope: the artwork minus the flap triangle -->
+      <!-- Side panels: the artwork minus the top flap -->
       <img src="assets/images/cover.avif" alt="Sealed nikkah invitation envelope" class="envelope-art envelope-art-body" fetchpriority="high">
 
-      <!-- Flap: same artwork clipped to the triangle, hinged at the top edge -->
-      <div class="envelope-flap" id="envelopeFlap">
-        <img src="assets/images/cover.avif" alt="" class="envelope-art flap-face">
+      <!-- Pocket interior, revealed as the bottom flap folds down -->
+      <div class="pocket-inside"></div>
+
+      <!-- Top flap: hinged at the top edge. Both folds meet at the wax,
+           so the seal splits between the two flaps as they part. -->
+      <div class="envelope-flap envelope-flap-top" id="envelopeFlap">
+        <img src="assets/images/cover.avif" alt="" class="envelope-layer flap-face">
         <div class="flap-underside"></div>
+      </div>
+
+      <!-- Bottom flap: hinged along its own fold -->
+      <div class="envelope-flap envelope-flap-bottom" id="envelopeBottom">
+        <img src="assets/images/cover.avif" alt="" class="envelope-layer bottom-face">
+        <div class="bottom-underside"></div>
       </div>
 
       <p class="envelope-open-label" id="envelopeTapHint">OPEN INVITATION</p>

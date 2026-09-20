@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const envelopeScreen = document.getElementById('envelopeScreen');
   const envelopeTapHint = document.getElementById('envelopeTapHint');
   const envelopeFlap = document.getElementById('envelopeFlap');
+  const envelopeBottom = document.getElementById('envelopeBottom');
 
   // --- MUSIC ---
   const music = document.getElementById('bgMusic');
@@ -78,8 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
       envelopeTapHint.style.transition = 'opacity 0.3s ease';
     }
 
-    // Lift the flap
+    // Part both flaps — the wax splits between them
     if (envelopeFlap) envelopeFlap.classList.add('opened');
+    if (envelopeBottom) envelopeBottom.classList.add('opened');
 
     // Fade the envelope away once it is open, reveal the invitation
     setTimeout(() => {
@@ -91,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 800);
       }
-    }, 1150);
+    }, 1350);
 
     // Start background music
     if (music) {

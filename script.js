@@ -1,6 +1,6 @@
 /* ==========================================================
    LUXURY NIKKAH INVITATION — JAVASCRIPT INTERACTIONS
-   Fayyas & Nargees | 27 September 2026 (10:15 AM)
+   Nargees & Fayyas | 27 September 2026 (10:15 AM)
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.style.opacity = '1';
       }, 150);
 
-      const msg = encodeURIComponent('Salam! I joyfully accept the invitation for the Nikkah of Mohammed Fayyas & Shibla Nargees on 27 Sept 2026.');
+      const msg = encodeURIComponent('Salam! I joyfully accept the invitation for the Nikkah of Shibla Nargees & Mohammed Fayyas on 27 Sept 2026.');
       setTimeout(() => {
         window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
       }, 700);
@@ -536,7 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.style.opacity = '1';
       }, 150);
 
-      const msg = encodeURIComponent('Salam! I regretfully decline the invitation for the Nikkah of Mohammed Fayyas & Shibla Nargees, sending my warmest blessings and du\'as.');
+      const msg = encodeURIComponent('Salam! I regretfully decline the invitation for the Nikkah of Shibla Nargees & Mohammed Fayyas, sending my warmest blessings and du\'as.');
       setTimeout(() => {
         window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
       }, 700);
